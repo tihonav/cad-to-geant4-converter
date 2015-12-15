@@ -10,6 +10,7 @@ HEADER = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n'
 SCHEMA = '<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">\n'
 FOOTER = '</gdml>'
 
+
 AUNIT  = 'deg'
 LUNIT  = 'mm'
 
