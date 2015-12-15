@@ -11,7 +11,9 @@ converter from CAD drawings (.stl format) to GEANT4 (.gdml)
 - Supported OS
   
   Mac OS
+
   Linux
+  
   Windows (with python installed)
 
 
