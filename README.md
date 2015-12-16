@@ -4,7 +4,7 @@ converter from CAD drawings (.stl format) to GEANT4 (.gdml)
 
 - Requirements:
 
-  No additional software is needed  
+  No additional libraries are needed  
 
 
 
@@ -20,4 +20,4 @@ converter from CAD drawings (.stl format) to GEANT4 (.gdml)
 
 - Usage:
 
-  python stl_gdml.py path_to_input_file.stl
+  python stl_gdml.py out_name  input_file_1.stl input_file_2.stl input_file_N.stl
