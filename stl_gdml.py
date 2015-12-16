@@ -21,7 +21,8 @@ AUNIT  = 'deg'
 LUNIT  = 'mm'
 
 
-MATERIALS = """
+
+MATERIALS = '''
     <materials>
 
         <element name="aluminum" formula="Al" Z="13"> 
@@ -52,7 +53,34 @@ MATERIALS = """
         </material>
     
     </materials>
-"""
+'''
+
+
+WORLD = '''
+    <setup name="Default" version="1.0">
+        <world ref="%s"/>
+    </setup>
+'''
+
+STRUCTURE = '''
+    <structure>
+        <volume name="%s">
+            <materialref ref="%s"/>
+            <solidref ref="%s"/>%s
+        </volume>
+    </structure>
+'''
+
+HELP_MESSAGE = ''' 
+
+    Usage: 
+            python "+ %s + " path_to_input_file.stl"
+	
+'''%__main__.__file__
+
+
+
+
 
 
 def __is_help__():
@@ -60,13 +88,7 @@ def __is_help__():
 	for arg in sys.argv:
 		if "-h" in arg.lower() and arg[0]=="-": ishelp = True 
 		if "help" in arg.lower(): ishelp = True
-	if not ishelp:
-		return
-	print 
-	print "Usage: "
-	print "       python "+ __main__.__file__ + " path_to_input_file.stl"
-	print
-	raise SystemExit
+	if ishelp: print HELP_MESSAGE
 
 
 def __print_error__(text):
@@ -75,6 +97,12 @@ def __print_error__(text):
 
 def __print__(text):
 	print text
+
+
+def __print_progress_bar__(text,percentage):
+	sys.stdout.write("\r%s %5.1f%%"%(text,percentage))
+	sys.stdout.flush()
+	if percentage==100.: print
 
 
 def __print_and_terminate__(text):
@@ -118,15 +146,22 @@ def __get_inputname_base__(fname):
 
 
 def get_triangles(fname):
+	#__print__("Processing file: "+fname)
 	f=open(fname,"r")
 	solid = None
 
-	while(True):
-		line=f.readline()
-		if not line:
-			return
+	#while(True):
+	#	line=f.readline()
+	#	if not line:
+	#		return
+	#	line=line.lower()
+
+	lines  = f.readlines()
+	nlines = len(lines)
+	for l in xrange(nlines):
+		__print_progress_bar__("Processing file %s: "%fname,100.*(l+1)/nlines)
+		line = lines[l].lower()
 	
-		line=line.lower()
 
 		# start facet 
 		if " facet " in line:
@@ -158,13 +193,14 @@ def get_triangles(fname):
 
 def stl_to_gdml(fname):
 	outname = __get_inputname_base__(fname)
+	outsolidname = outname+"-SOL"
 
 
 
 	# get body
-	vertices = '    <define>\n'
-	solids   = '    <solids>\n'
-	solids  += '        <tessellated aunit="%s" lunit="%s" name="%s-SOL">\n'%(AUNIT,LUNIT,outname)
+	vertices = '\n    <define>\n'
+	solids   = '\n    <solids>\n'
+	solids  += '        <tessellated aunit="%s" lunit="%s" name="%s">\n'%(AUNIT,LUNIT,outsolidname)
 	vertexid = 0
 	for triangle in get_triangles(fname):
 		if len(triangle["vertex"])!=3:
@@ -195,44 +231,72 @@ def stl_to_gdml(fname):
 
 
 	# structure
-	structure = '    <structure>\n'
-	structure +='        <volume name="%s">\n'%outname
-	structure +='            <materialref ref="%s"/>\n'%("Vacuum")   
-	structure +='            <solidref ref="%s-SOL"/>\n'%outname
-	structure +='        </volume>\n'
-	structure +='    </structure>\n'
+	structure = STRUCTURE%(outname,"Vacuum", outsolidname,"")
 
 	# world
-	world = '    <setup name="Default" version="1.0">\n'
-	world+= '        <world ref="%s"/>\n'%outname
-	world+= '    </setup>\n'
+	world = WORLD%outname
 	
 
 	
-	#test
+	# create output gdml file
+	outfilename = outname+".gdml"
+	fout = open(outfilename,"w")
+	fout.write(HEADER)
+	fout.write(SCHEMA)
+	#fout.write(MATERIALS)
+	fout.write(vertices)
+	fout.write(solids)
+	fout.write(structure)
+	fout.write(world)
+	fout.write(FOOTER)
+	fout.close()
+	return outfilename
+					 									
+
+def creat_gdml_bundle(outname, infiles):
+	# some world constants
+	WORLD_BOX_SIZE = __float_to_str__(10000.)
+	SOLIDNMAE  = "world_solid"
+	VOLUMENAME = "world_volume"
+
+	# solids
+	solid  = '\n    <solids>\n'
+	solid += '        <box lunit="%s" name="%s" x="%s" y="%s" z="%s" />\n'%(LUNIT,SOLIDNMAE,WORLD_BOX_SIZE,WORLD_BOX_SIZE,WORLD_BOX_SIZE)
+	solid += '    </solids>\n'
+
+	# structure 
+	includes  = "\n\n"
+	for fname in infiles:
+		gdmlname = stl_to_gdml(fname)
+		includes += '            <physvol>\n'
+		includes += '                <file name="%s"/>\n'%gdmlname
+		#includes += '                <position name="stk_corner_bolts_pos" x="stk_adjust_x_position" y="stk_adjust_y_position" z="stk_adjust_z_position" unit="mm"/>'
+		#includes += '                <rotationref ref="old_to_new_coordinatesystem_rotation" />'
+		includes += '             </physvol>\n'
+
+	includes += "\n"
+	structure = STRUCTURE%(VOLUMENAME,"Vacuum", SOLIDNMAE,includes)
+
+	# world
+	world = WORLD%VOLUMENAME
+
+
+	# create top level gdml file
 	fout = open(outname+".gdml","w")
 	fout.write(HEADER)
 	fout.write(SCHEMA)
-	fout.write("\n")
 	fout.write(MATERIALS)
-	fout.write("\n")
-	fout.write(vertices)
-	fout.write("\n")
-	fout.write(solids)
-	fout.write("\n")
+	fout.write(solid)
 	fout.write(structure)
-	fout.write("\n")
 	fout.write(world)
-	fout.write("\n")
 	fout.write(FOOTER)
 	fout.close()
-					 									
-
-		
+	
 		
 
 __is_help__()
-stl_to_gdml(sys.argv[1])
+#stl_to_gdml(sys.argv[1])
+creat_gdml_bundle(sys.argv[1],sys.argv[2:])
 	
 	
 	
