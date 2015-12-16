@@ -71,12 +71,17 @@ STRUCTURE = '''
     </structure>
 '''
 
+MODULE_NAME  = __main__.__file__.split("/")[-1].split("\\")[-1] 
 HELP_MESSAGE = ''' 
 
     Usage: 
-            python "+ %s + " path_to_input_file.stl"
+            python  %s  out_name  input_file_1.stl input_file_2.stl  input_file_N.stl"
+
+            or
+
+            python  %s  out_name  path_to_stl_file/blah_blah_*.stl
 	
-'''%__main__.__file__
+'''%(MODULE_NAME,MODULE_NAME)
 
 
 
@@ -146,15 +151,8 @@ def __get_inputname_base__(fname):
 
 
 def get_triangles(fname):
-	#__print__("Processing file: "+fname)
 	f=open(fname,"r")
 	solid = None
-
-	#while(True):
-	#	line=f.readline()
-	#	if not line:
-	#		return
-	#	line=line.lower()
 
 	lines  = f.readlines()
 	nlines = len(lines)
@@ -294,8 +292,14 @@ def creat_gdml_bundle(outname, infiles):
 	
 		
 
-__is_help__()
+#__is_help__()
 #stl_to_gdml(sys.argv[1])
+
+
+__is_help__()
+if len(sys.argv)<3:
+	__print__('Not enough argumnets provided! see  "python %s -h" for more details'%MODULE_NAME)
+	raise SystemExit
 creat_gdml_bundle(sys.argv[1],sys.argv[2:])
 	
 	
