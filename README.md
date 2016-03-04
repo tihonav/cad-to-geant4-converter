@@ -16,8 +16,11 @@ TESTED OS:
 USAGE: 
  - python stl_gdml.py out_name  input_file_1.stl input_file_2.stl input_file_N.stl
 
+
+
 EXAMPLE: 
  - Download and unzip the project
  - cd cad-to-geant4-converter/Example
  - python ../stl_gdml.py test_model ./*.stl 
+
 As a result, you will get a test_model.gdml file, which you can use as a GEANT4 geometry. If you take a look inside the test_model.gdml, you will find different sub-detector parts, each part corresponding to one intial .stl file.
