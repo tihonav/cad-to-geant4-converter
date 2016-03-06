@@ -7,10 +7,23 @@
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
 		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
+	<!--<body onload="loadFile()">-->
 		<script src="js/three.min.js"></script>
+
+		<div class="openFile">
+			<!--<input type="file" id="inputButton" >-->
+			<!--<input type="file" id="inputButton" onchange="javascript:document.getElementById('inputLabel').innerHTML = 'test';">-->
+			<input type="file" id="inputButton" onchange="javascript:document.getElementById('inputLabel').innerHTML = this.value;">
+			<!--<button type="button" onclick="javascript:document.getElementById('myUpload').click();">Upload Photo</button>-->
+			<label for="inputButton" id="inputLabel">Choose a geometry file (.csv) </label>
+		</div>
+
+
 		<script src="js/visualize.js"></script>
+
 
 	</body>
 </html>

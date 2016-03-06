@@ -1,20 +1,7 @@
 import sys
-import ast
 
 NVERTEXTRIANGLE = 3
 
-"""
-def str_to_float(text):
-	try:
-		return ast.literal_eval(text)
-	except Exception, e:
-		print "String to float conversion failed due to: "+str(e)
-		print "To convert: ", text
-		raise SystemExit
-
-def float_to_str(val):
-        return '{}'.format(val)
-"""
 
 
 def print_progress_bar(text,percentage):
