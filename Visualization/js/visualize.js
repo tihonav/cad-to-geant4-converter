@@ -13,9 +13,17 @@ var cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 camera.position.z = 5;
 
+
+
 // * render the scene
 function render() {
 	requestAnimationFrame( render );
+
+	//window.alert(document.getElementById('inputButton').value);
+
+	//cube.rotation.x += 0.1;
+	//cube.rotation.y += 0.1;
+
 	renderer.render( scene, camera );
 }
 render();

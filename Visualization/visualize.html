@@ -17,6 +17,11 @@
 			<!--<input type="file" id="inputButton" >-->
 			<!--<input type="file" id="inputButton" onchange="javascript:document.getElementById('inputLabel').innerHTML = 'test';">-->
 			<input type="file" id="inputButton" onchange="javascript:document.getElementById('inputLabel').innerHTML = this.value;">
+			<!--<input type="file" id="inputButton" onchange="javascript:console.log(this.files[0].mozFullPath);">-->
+			<!--<input type="file" id="inputButton" onchange="javascript:console.dir(this.files[0]);">-->
+			<!--<input type="file" multiple accept=".gdml" id="inputButton" onchange="javascript:document.getElementById('inputLabel').innerHTML=this.files[0];">-->
+			<!--<ainput type="file" multiple accept=".gdml" id="inputButton" onchange="javascript:document.getElementById('inputLabel').innerHTML=window.URL.createObjectURL(this.files[0]);">-->
+			<!--<input type="file" id="inputButton" onchange="javascript:console.log('test');">-->
 			<!--<button type="button" onclick="javascript:document.getElementById('myUpload').click();">Upload Photo</button>-->
 			<label for="inputButton" id="inputLabel">Choose a geometry file (.csv) </label>
 		</div>
