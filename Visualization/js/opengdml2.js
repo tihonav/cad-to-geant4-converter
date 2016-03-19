@@ -57,7 +57,7 @@ function createGeometry(polygons)
 		if(nvert==NVERTPOLYGON){
 			geom.faces.push( new THREE.Face3( ipolygon*NVERTPOLYGON, ipolygon*NVERTPOLYGON+ 1,ipolygon*NVERTPOLYGON+ 2 ) );
 			//geom.faces.push( new THREE.Face3( 0, 2, 1 ) );
-			geom.computeFaceNormals();
+			//geom.computeFaceNormals();
 		}
 		else{
 			var message = 'Unrecognized geometry type ==> so far only allow triangulated solids, while nvert='+nvert.toString();
@@ -75,6 +75,7 @@ function createGeometry(polygons)
 
 		//console.log(allgeometry[igeom].length);
 	}
+	geom.computeFaceNormals();
 	//scene.add( group );
 	var object = new THREE.Mesh( geom, new THREE.MeshNormalMaterial({ color: 0x00ff00 }) );
 	group.add(object)
