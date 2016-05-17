@@ -33,4 +33,4 @@ python ../stl_gdml.py test_model ./*.stl
 
 As a result, you will get a test_model.gdml file, which you can use as a GEANT4 geometry. If you take a look inside the test_model.gdml, you will find different sub-detector parts, each part corresponding to one intial .stl file.
 
-### 2 Conversiond from stl to gdml and visualization of resulting model in GEANT4. 
+### 2. Visualization of resulting model in GEANT4. 
