@@ -36,4 +36,4 @@ As a result, you will get a test_model.gdml file, which you can use as a GEANT4 
 ### 2. Visualization of resulting model in GEANT4. 
 
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
