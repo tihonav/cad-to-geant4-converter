@@ -20,6 +20,7 @@ FOOTER = '</gdml>'
 AUNIT  = 'deg'
 LUNIT  = 'mm'
 
+MATERIALS_INFO = '''
 
 #@
 #@  So far, following complex  materials are implemented:
@@ -41,15 +42,38 @@ LUNIT  = 'mm'
 #@            - Tungsten
 #@            - PMT
 #@            - BGO
-#@            - BC245 (neutron detector)
+#@            - BC254 (neutron detector)
 #@       - Others: 
 #@            - Glass 
 #@            - FibrousGlass
-#@            - Polydimethylsiloxane (Silicon Rubber, PDMS)
+#@            - PDMS: Polydimethylsiloxane (Silicon Rubber)
+#@            - EpoxyResin
 #@       
 #@  Please contact the author to implement more materials, 
 #@  or (and) feel free to implement them yourself
 #@
+'''
+
+MATERIALS_LIST = [
+	{"name" : "Vacuum",       "group" : "Other"},
+	{"name" : "Aluminum",     "group" : "Mechanic tructures"},
+	{"name" : "Honeycomb",    "group" : "Mechanic tructures"},
+	{"name" : "CarbonFibre",  "group" : "Mechanic tructures"},
+	{"name" : "DC3140",       "group" : "Adhesives"}, 
+	{"name" : "FR4",          "group" : "PCB"},
+	{"name" : "Copper",       "group" : "PCB"},
+	{"name" : "Gold",         "group" : "PCB"},
+	{"name" : "Nickel",       "group" : "PCB"},
+	{"name" : "Silicon",      "group" : "Detector Elements"},
+	{"name" : "Tungsten",     "group" : "Detector Elements"},
+	{"name" : "PMT",          "group" : "Detector Elements"},
+	{"name" : "BGO",          "group" : "Detector Elements"},
+	{"name" : "BC254",        "group" : "Detector Elements"},
+	{"name" : "Glass",        "group" : "Other"},
+	{"name" : "FibrousGlass", "group" : "Other"},
+	{"name" : "PDMS",         "group" : "Other"},
+	{"name" : "EpoxyResin",   "group" : "Other"},
+]
 
 MATERIALS = '''
     <materials>
@@ -113,7 +137,7 @@ MATERIALS = '''
 
         <!-- FR4 submaterials -->
 
-        <material name="epoxy_resin" formula="C38H40O6Br4">
+        <material name="EpoxyResin" formula="C38H40O6Br4">
             <D value="1.1250" unit="g/cm3"/>
             <composite n="38" ref="carbon"/>
             <composite n="40" ref="hydrogen"/>
@@ -163,7 +187,7 @@ MATERIALS = '''
            <composite n="2" ref="oxygen"/>
        </material>
 
-       <material name="fibrous_glass">
+       <material name="FibrousGlass">
            <D value="2.74351" unit="g/cm3"/>
            <fraction n="0.600" ref="SiO2"/>
            <fraction n="0.118" ref="Al2O3"/>
@@ -176,7 +200,7 @@ MATERIALS = '''
 
        <material name="FR4">
            <D value="1.98281" unit="g/cm3"/>
-           <fraction n="0.47" ref="epoxy_resin"/>
+           <fraction n="0.47" ref="EpoxyResin"/>
            <fraction n="0.53" ref="fibrous_glass"/>
        </material>  
   
@@ -274,21 +298,14 @@ MATERIALS = '''
       </material> 
 
       <!-- PMT -->
-      <material name="sylgard170" formula="SiOC2H6" >
-          <D value="1.34" unit="g/cm3" />
-          <composite n="1" ref="silicon" />
-          <composite n="1" ref="oxygen" />
-          <composite n="2" ref="carbon" />
-          <composite n="6" ref="hydrogen" />
-      </material>
 
-      <material name="glass" formula="SiO2" >
+      <material name="Glass" formula="SiO2" >
           <D value="2.5" unit="g/cm3" />
           <composite n="1" ref="silicon" />
           <composite n="2" ref="oxygen" />
       </material>
 
-      <material name="pmt-mix" state="solid">
+      <material name="PMT" state="solid">
          <D value="2.524" unit="g/cm3"/>
          <fraction n="0.7" ref="aluminum"/>
          <fraction n="0.2" ref="glass"/>
@@ -304,7 +321,7 @@ MATERIALS = '''
       </material>
 
      <!--sylgard 170, Silicon Rubber Polydimethylsiloxane(PDMS)-->
-     <material name="sylgard170" formula="SiOC2H6" >
+     <material name="PDMS" formula="SiOC2H6" >
          <D value="1.34" unit="g/cm3" />
          <composite n="1" ref="silicon" />
          <composite n="1" ref="oxygen" />
@@ -312,7 +329,7 @@ MATERIALS = '''
          <composite n="6" ref="hydrogen" />
      </material>
 
-     <!-- BC245 (neutron detector) -->
+     <!-- BC254 (neutron detector) -->
      <material name="BC254" state="solid">
         <MEE unit="eV" value="173"/>
         <D unit="g/cm3" value="1.026"/>
@@ -349,8 +366,16 @@ HELP_MESSAGE = '''
             or
 
             python  %s  out_name  path_to_stl_file/blah_blah_*.stl
+
+
+    Materials:
+ 
+            Material are encoded in the stl file name
+            For instance, my_geometry_part_Aluminum.stl - this part will be parsed as made of aluminum
+            See  %s --materials to display list of available materials
+              
 	
-'''%(MODULE_NAME,MODULE_NAME)
+'''%(MODULE_NAME,MODULE_NAME,MODULE_NAME)
 
 
 
@@ -475,6 +500,20 @@ def get_triangles(fname):
 			yield solid
 
 
+def guess_material(fname):
+	target = fname.lower()
+	materials = [m["name"] for m in MATERIALS_LIST if m["name"].lower() in target]
+	if len(materials)>1:
+		__print__("Ambigous materials for file: %s:"%fname)
+		[__print__("   %s"%x) for x in materials]
+		__print__("Please specify name properly - assigning Vacuum to this volume!")
+		return MATERIALS_LIST[0]["name"]
+	elif not materials:
+		__print__("Could not parse material for the file %s: - asigning Vacuum to this volume!"%fname)
+		return MATERIALS_LIST[0]["name"]
+	
+	__print__("File %s - material parsed: %s"%(fname,materials[0]))
+	return materials[0]
 
 def stl_to_gdml(fname):
 	outname = __get_inputname_base__(fname)
@@ -514,9 +553,12 @@ def stl_to_gdml(fname):
 	solids+=   '        </tessellated>\n'
 	solids+=   '    </solids>\n'
 
+	# material
+	material = guess_material(fname) # "Vacuum"
+
 
 	# structure
-	structure = STRUCTURE%(outname,"Vacuum", outsolidname,"")
+	structure = STRUCTURE%(outname, material, outsolidname,"")
 
 	# world
 	world = WORLD%outname
@@ -585,6 +627,9 @@ def creat_gdml_bundle(outname, infiles):
 
 
 __is_help__()
+if "--materials" in sys.argv:
+	__print__(MATERIALS_INFO)
+	raise SystemExit
 if len(sys.argv)<3:
 	__print__('Not enough argumnets provided! see  "python %s -h" for more details'%MODULE_NAME)
 	raise SystemExit
