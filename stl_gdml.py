@@ -201,7 +201,7 @@ MATERIALS = '''
        <material name="FR4">
            <D value="1.98281" unit="g/cm3"/>
            <fraction n="0.47" ref="EpoxyResin"/>
-           <fraction n="0.53" ref="fibrous_glass"/>
+           <fraction n="0.53" ref="FibrousGlass"/>
        </material>  
   
  
@@ -504,15 +504,15 @@ def guess_material(fname):
 	target = fname.lower()
 	materials = [m["name"] for m in MATERIALS_LIST if m["name"].lower() in target]
 	if len(materials)>1:
-		__print__("Ambigous materials for file: %s:"%fname)
-		[__print__("   %s"%x) for x in materials]
-		__print__("Please specify name properly - assigning Vacuum to this volume!")
+		__print__("    Ambigous materials for file: %s:"%fname)
+		[__print__("        %s"%x) for x in materials]
+		__print__("        ... please specify name properly - assigning Vacuum to this volume!")
 		return MATERIALS_LIST[0]["name"]
 	elif not materials:
-		__print__("Could not parse material for the file %s: - asigning Vacuum to this volume!"%fname)
+		__print__("    Could not parse material for the file %s: - asigning Vacuum to this volume!"%fname)
 		return MATERIALS_LIST[0]["name"]
 	
-	__print__("File %s - material parsed: %s"%(fname,materials[0]))
+	__print__("    File %s - material parsed: %s"%(fname,materials[0]))
 	return materials[0]
 
 def stl_to_gdml(fname):
