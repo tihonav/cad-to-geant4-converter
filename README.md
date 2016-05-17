@@ -42,7 +42,7 @@ As a result, you will get a test_model.gdml file, which you can use as a GEANT4 
 
 ### 2. Visualization of resulting model in GEANT4. 
 
-This example shows how to load gdml model that you obtained after conversion in GEANT4. Running this example requires either GEANT4 installed on your computer, or having access to CERN lxplus machines. Instructions are given for the lxplus case. This example can be done independently of the first one.
+This example shows how to load and visualize in GEANT4 the gdml model that you obtained after conversion from stl. Running this example requires either GEANT4 installed on your computer, or having access to CERN lxplus. Instructions are given for the lxplus case. This example can be done independently of the first one.
 
  - Login to lxplus machine:
  ```bash
