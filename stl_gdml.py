@@ -405,15 +405,33 @@ def __get_three_values__(line, delimiter):
 	return [__str_to_float__(val) for val in vals]
 
 
-def __get_orientation__(norm, vertex1, vertex2, vertex3):
-	v1 = np.array(vertex1)
-	v2 = np.array(vertex2)
-	v3 = np.array(vertex3)
-	vec1 = v2 - v1
-	vec2 = v3 - v2
-	norm1 = np.cross(vec1,vec2)
-	return 1 if np.inner(norm,norm1)>0 else -1
-	
+#def __get_orientation__(norm, vertex1, vertex2, vertex3):
+#	v1 = np.array(vertex1)
+#	v2 = np.array(vertex2)
+#	v3 = np.array(vertex3)
+#	vec1 = v2 - v1
+#	vec2 = v3 - v2
+#	norm1 = np.cross(vec1,vec2)
+#	return 1 if np.inner(norm,norm1)>0 else -1
+
+def __vectr_subtr__(vector1, vector2):
+	return [x[0]-x[1] for x in zip(vector1,vector2)]
+
+def __vector_cross__(vector1, vector2):
+	return [
+                  vector1[1]*vector2[2] - vector1[2]*vector2[1],
+                - vector1[0]*vector2[2] + vector1[2]*vector2[0],
+                  vector1[0]*vector2[1] - vector1[1]*vector2[0],
+                        ]
+
+def __vector_inner__(vector1,vector2):
+	return sum([x[0]*x[1] for x in zip(vector1,vector2)])
+
+def __get_orientation__(norm, v1, v2, v3):
+	vec1 = __vectr_subtr__(v2, v1)
+	vec2 = __vectr_subtr__(v3, v2)
+	norm1 = __vector_cross__(vec1,vec2)
+	return 1 if __vector_inner__(norm,norm1)>0 else -1
 
 def __get_inputname_base__(fname):
 	return fname.split("/")[-1].split(".stl")[0]
@@ -549,7 +567,8 @@ def creat_gdml_bundle(outname, infiles):
 
 
 	# create top level gdml file
-	fout = open(outname+".gdml","w")
+	outname = outname+".gdml"
+	fout = open(outname,"w")
 	fout.write(HEADER)
 	fout.write(SCHEMA)
 	fout.write(MATERIALS)
@@ -569,6 +588,9 @@ __is_help__()
 if len(sys.argv)<3:
 	__print__('Not enough argumnets provided! see  "python %s -h" for more details'%MODULE_NAME)
 	raise SystemExit
+if ".stl" in sys.argv[1]:
+	__print__('Please provide input file name! see  "python %s -h" for more details'%MODULE_NAME)
+        raise SystemExit
 creat_gdml_bundle(sys.argv[1],sys.argv[2:])
 	
 	
