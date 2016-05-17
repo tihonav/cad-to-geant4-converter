@@ -298,6 +298,14 @@ MATERIALS = '''
       </material> 
 
       <!-- PMT -->
+      <!--sylgard 170, Silicon Rubber Polydimethylsiloxane(PDMS)-->
+      <material name="PDMS" formula="SiOC2H6" >
+          <D value="1.34" unit="g/cm3" />
+          <composite n="1" ref="silicon" />
+          <composite n="1" ref="oxygen" />
+          <composite n="2" ref="carbon" />
+          <composite n="6" ref="hydrogen" />
+      </material>
 
       <material name="Glass" formula="SiO2" >
           <D value="2.5" unit="g/cm3" />
@@ -308,8 +316,8 @@ MATERIALS = '''
       <material name="PMT" state="solid">
          <D value="2.524" unit="g/cm3"/>
          <fraction n="0.7" ref="aluminum"/>
-         <fraction n="0.2" ref="glass"/>
-         <fraction n="0.1" ref="sylgard170"/>
+         <fraction n="0.2" ref="Glass"/>
+         <fraction n="0.1" ref="PDMS"/>
       </material>
 
       <!-- BGO -->
@@ -320,14 +328,6 @@ MATERIALS = '''
          <composite n="12" ref="oxygen" />
       </material>
 
-     <!--sylgard 170, Silicon Rubber Polydimethylsiloxane(PDMS)-->
-     <material name="PDMS" formula="SiOC2H6" >
-         <D value="1.34" unit="g/cm3" />
-         <composite n="1" ref="silicon" />
-         <composite n="1" ref="oxygen" />
-         <composite n="2" ref="carbon" />
-         <composite n="6" ref="hydrogen" />
-     </material>
 
      <!-- BC254 (neutron detector) -->
      <material name="BC254" state="solid">
