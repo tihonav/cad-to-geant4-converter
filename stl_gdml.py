@@ -21,37 +21,306 @@ AUNIT  = 'deg'
 LUNIT  = 'mm'
 
 
+#@
+#@  So far, following complex  materials are implemented:
+#@       - Vacuum
+#@       - Mechanic tructures
+#@            - Aluminum
+#@            - Honeycomb (Aluminum)
+#@            - CarbonFibre
+#@       - Adhesives
+#@            - DC3140 (Glue, Dow Corning)
+#@       - PCB 
+#@            - FR4
+#@            - Copper
+#@            - Kapton
+#@            - Gold
+#@            - Nickel
+#@       - Detector materials: 
+#@            - Silicon
+#@            - Tungsten
+#@            - PMT
+#@            - BGO
+#@            - BC245 (neutron detector)
+#@       - Others: 
+#@            - Glass 
+#@            - FibrousGlass
+#@            - Polydimethylsiloxane (Silicon Rubber, PDMS)
+#@       
+#@  Please contact the author to implement more materials, 
+#@  or (and) feel free to implement them yourself
+#@
 
 MATERIALS = '''
     <materials>
+        <!--          -->
+	<!-- elements -->
+        <!--          -->
+        <!-- http://www-cdf.fnal.gov/~kirby/lbne_geo_tests/lbne_10kT_Materials.gdml -->
+        <element name="videRef"    formula="VACUUM" Z="1"> <atom value="1."/>       </element>
+        <element name="hydrogen"   formula="H"   Z="1">    <atom value="1.0079"/>   </element>
+        <element name="carbon"     formula="C"   Z="6">    <atom value="12.0107"/>  </element>
+        <element name="nitrogen"   formula="N"   Z="7">    <atom value="14.0067"/>  </element>
+        <element name="oxygen"     formula="O"   Z="8">    <atom value="15.999"/>   </element>
+        <element name="sodium"     formula="Na"  Z="11">   <atom value="22.99"/>    </element>
+        <element name="magnesium"  formula="Mg"  Z="12">   <atom value="24.305"/>   </element>
+        <element name="aluminum"   formula="Al"  Z="13">   <atom value="26.9815"/>  </element>
+        <element name="silicon"    formula="Si"  Z="14">   <atom value="28.0855"/>  </element>
+        <element name="phosphorus" formula="P"   Z="15">   <atom value="30.973"/>   </element>
+        <element name="sulphur"    formula="S"   Z="16">   <atom value="32.065"/>   </element>
+        <element name="argon"      formula="Ar"  Z="18">   <atom value="39.9480"/>  </element>
+        <element name="potassium"  formula="K"   Z="19">   <atom value="39.0983"/>  </element>
+        <element name="calcium"    formula="Ca"  Z="20">   <atom value="40.078"/>   </element>
+        <element name="titanium"   formula="Ti"  Z="22">   <atom value="47.867"/>   </element>
+        <element name="chromium"   formula="Cr"  Z="24">   <atom value="51.9961"/>  </element>
+        <element name="iron"       formula="Fe"  Z="26">   <atom value="55.8450"/>  </element>
+        <element name="nickel"     formula="Ni"  Z="28">   <atom value="58.6934"/>  </element>
+        <element name="copper"     formula="Cu"  Z="29">   <atom value="63.55"/>    </element>
+        <element name="germanium"  formula="Ge"  Z="32">   <atom value="72.63"/>    </element>
+        <element name="bromine"    formula="Br"  Z="35">   <atom value="79.904"/>   </element>
+        <element name="aurum"      formula="Au"  Z="79">   <atom value="196.97"/>   </element>
+        <element name="tungsten"   formula="W"   Z="74">   <atom value="183.84"/>   </element>
+        <element name="bismuth"    formula="Bi"  Z="83">   <atom value="208.980"/>  </element>
 
-        <element name="aluminum" formula="Al" Z="13"> 
-            <atom value="26.98"/>   
+
+        <!--                    -->
+	<!-- composite elements -->
+        <!--                    -->
+
+        <isotope name="B10"  N="5" Z="5">   <atom unit="g/mole" value="10.0129369"/>  </isotope>
+        <isotope name="B11"  N="6" Z="5">   <atom unit="g/mole" value="11.0093054"/>  </isotope>
+        <element name="B">
+            <fraction n="0.199" ref="B10"/>
+            <fraction n="0.801" ref="B11"/>
         </element>
+
+
+
     
-        <element name="carbon" formula="C" Z="6"> 
-            <atom value="12.01"/>   
-        </element>
-
-        <material formula="Al" name="Aluminum" state="solid">
-            <D value="2.700" unit="g/cm3"/>
-            <fraction n="1." ref="aluminum"/>
-        </material>
-        
-        <material name="CarbonFibre" state="solid">      
-            <D unit="g/cm3" value="0.145"/>
-            <fraction n="1.0" ref="carbon"/>      
-        </material>     
-  
-        <!--Vacuum-->
-        <element name="videRef" formula="VACUUM" Z="1">
-            <atom value="1."/>
-        </element>
+        <!--          -->
+        <!-- vacuum   -->
+        <!--          -->
         <material formula=" " name="Vacuum">
             <D value="1.e-25" unit="g/cm3" />
             <fraction n="1.0" ref="videRef" />
         </material>
-    
+
+
+
+        <!--           -->
+	<!-- materials -->
+        <!--           -->
+
+        <!-- FR4 submaterials -->
+
+        <material name="epoxy_resin" formula="C38H40O6Br4">
+            <D value="1.1250" unit="g/cm3"/>
+            <composite n="38" ref="carbon"/>
+            <composite n="40" ref="hydrogen"/>
+            <composite n="6" ref="oxygen"/>
+            <composite n="4" ref="bromine"/>
+        </material>
+
+        <material name="SiO2" formula="SiO2">
+            <D value="2.2" unit="g/cm3"/>
+            <composite n="1" ref="silicon"/>
+            <composite n="2" ref="oxygen"/>
+        </material>
+
+        <material name="Al2O3" formula="Al2O3">
+            <D value="3.97" unit="g/cm3"/>
+            <composite n="2" ref="aluminum"/>
+            <composite n="3" ref="oxygen"/>
+        </material>
+
+        <material name="Fe2O3" formula="Fe2O3">
+            <D value="5.24" unit="g/cm3"/>
+            <composite n="2" ref="iron"/>
+            <composite n="3" ref="oxygen"/>
+        </material>
+
+       <material name="CaO" formula="CaO">
+           <D value="3.35" unit="g/cm3"/>
+           <composite n="1" ref="calcium"/>
+           <composite n="1" ref="oxygen"/>
+       </material>
+
+       <material name="MgO" formula="MgO">
+           <D value="3.58" unit="g/cm3"/>
+           <composite n="1" ref="magnesium"/>
+           <composite n="1" ref="oxygen"/>
+       </material>
+
+       <material name="Na2O" formula="Na2O">
+           <D value="2.27" unit="g/cm3"/>
+           <composite n="2" ref="sodium"/>
+           <composite n="1" ref="oxygen"/>
+       </material>
+
+       <material name="TiO2" formula="TiO2">
+           <D value="4.23" unit="g/cm3"/>
+           <composite n="1" ref="titanium"/>
+           <composite n="2" ref="oxygen"/>
+       </material>
+
+       <material name="fibrous_glass">
+           <D value="2.74351" unit="g/cm3"/>
+           <fraction n="0.600" ref="SiO2"/>
+           <fraction n="0.118" ref="Al2O3"/>
+           <fraction n="0.001" ref="Fe2O3"/>
+           <fraction n="0.224" ref="CaO"/>
+           <fraction n="0.034" ref="MgO"/>
+           <fraction n="0.010" ref="Na2O"/>
+           <fraction n="0.013" ref="TiO2"/>
+       </material>
+
+       <material name="FR4">
+           <D value="1.98281" unit="g/cm3"/>
+           <fraction n="0.47" ref="epoxy_resin"/>
+           <fraction n="0.53" ref="fibrous_glass"/>
+       </material>  
+  
+ 
+       <!-- Glue (DC3140, Dow Corning) sub materials -->
+   
+       <material name="dimethylsiloxane_hydroxy_terminated" formula="HOSiCH3CH3OH">
+           <D value="0.98" unit="g/cm3"/>
+           <composite n="2" ref="oxygen"/>
+           <composite n="8" ref="hydrogen"/>
+           <composite n="2" ref="carbon"/>
+           <composite n="1" ref="silicon"/>
+       </material>  
+   
+       <material name="trimethylated_silica" formula="O2Si">
+           <D value="2.6" unit="g/cm3"/>
+           <composite n="2" ref="oxygen"/>    
+           <composite n="1" ref="silicon"/>
+       </material>  
+   
+       <material name="methyltrimethoxysilane" formula="C4H12O3Si">
+           <D value="0.955" unit="g/cm3"/>
+           <composite n="3"  ref="oxygen"/>
+           <composite n="12" ref="hydrogen"/>
+           <composite n="4"  ref="carbon"/>
+           <composite n="1"  ref="silicon"/>
+       </material>
+   
+       <material name="DC3140">
+           <D value="1.2" unit="g/cm3"/>
+           <fraction n="0.60" ref="dimethylsiloxane_hydroxy_terminated"/>
+           <fraction n="0.30" ref="trimethylated_silica"/>
+           <fraction n="0.10" ref="methyltrimethoxysilane"/>    
+       </material>  
+   
+
+      <!-- Conductive materials for PCB -->
+   
+      <material name="Copper" state="solid">
+           <D value="8.960" unit="g/cm3"/>
+           <fraction n="1." ref="copper"/>
+      </material>
+   
+     <material name="Gold" state="solid">
+           <D value="19.32" unit="g/cm3"/>
+           <fraction n="1." ref="aurum"/>
+     </material>
+   
+   
+     <material name="Nickel" state="solid">
+           <D value="8.96" unit="g/cm3"/>
+           <fraction n="1." ref="nickel"/>
+     </material>
+   
+   
+     <!-- Kapton -->
+   
+     <material name="Kapton" state="solid">
+           <D value="1.42" unit="g/cm3"/>
+           <fraction n="0.0273" ref="hydrogen"/>
+           <fraction n="0.7213" ref="carbon"/>
+           <fraction n="0.0765" ref="nitrogen"/>
+           <fraction n="0.1749" ref="oxygen"/>
+     </material>
+   
+
+
+      <!-- Aluminum, Hineycomb, Carbon fibre, etc. (simple materials)>
+
+      <material formula="Al" name="Aluminum" state="solid">
+           <D value="2.700" unit="g/cm3"/>
+           <fraction n="1." ref="aluminum"/>
+      </material>
+        
+      <material name="CarbonFibre" state="solid">      
+           <D unit="g/cm3" value="0.145"/>
+           <fraction n="1.0" ref="carbon"/>      
+      </material>     
+
+      <material name="Honeycomb" state="solid">
+           <D value="0.030" unit="g/cm3"/>
+           <fraction n="1." ref="aluminum"/>
+      </material>
+
+      <!-- Silicon -->
+      <material name="Silicon" state="solid">
+           <D value="2.333" unit="g/cm3"/>
+           <fraction n="1." ref="silicon"/>
+      </material>
+
+      <!-- Tungsten -->
+      <material name="Tungsten" state="solid">
+          <D value="19.3" unit="g/cm3"/>
+          <fraction n="1." ref="tungsten"/>
+      </material> 
+
+      <!-- PMT -->
+      <material name="sylgard170" formula="SiOC2H6" >
+          <D value="1.34" unit="g/cm3" />
+          <composite n="1" ref="silicon" />
+          <composite n="1" ref="oxygen" />
+          <composite n="2" ref="carbon" />
+          <composite n="6" ref="hydrogen" />
+      </material>
+
+      <material name="glass" formula="SiO2" >
+          <D value="2.5" unit="g/cm3" />
+          <composite n="1" ref="silicon" />
+          <composite n="2" ref="oxygen" />
+      </material>
+
+      <material name="pmt-mix" state="solid">
+         <D value="2.524" unit="g/cm3"/>
+         <fraction n="0.7" ref="aluminum"/>
+         <fraction n="0.2" ref="glass"/>
+         <fraction n="0.1" ref="sylgard170"/>
+      </material>
+
+      <!-- BGO -->
+      <material name="BGO" formula="Bi4Ge3O12" >
+         <D value="7.13" unit="g/cm3" />
+         <composite n="4" ref="bismuth" />
+         <composite n="3" ref="germanium" />
+         <composite n="12" ref="oxygen" />
+      </material>
+
+     <!--sylgard 170, Silicon Rubber Polydimethylsiloxane(PDMS)-->
+     <material name="sylgard170" formula="SiOC2H6" >
+         <D value="1.34" unit="g/cm3" />
+         <composite n="1" ref="silicon" />
+         <composite n="1" ref="oxygen" />
+         <composite n="2" ref="carbon" />
+         <composite n="6" ref="hydrogen" />
+     </material>
+
+     <!-- BC245 (neutron detector) -->
+     <material name="BC254" state="solid">
+        <MEE unit="eV" value="173"/>
+        <D unit="g/cm3" value="1.026"/>
+        <fraction n="0.2492" ref="carbon"/>
+        <fraction n="0.7475" ref="hydrogen"/>
+        <fraction n="0.0033" ref="B"/>
+     </material>
+
     </materials>
 '''
 
