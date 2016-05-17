@@ -22,11 +22,11 @@ python stl_gdml.py out_name  input_file_1.stl input_file_2.stl input_file_N.stl
 ```
 # Materials
 
-Material are encoded in the stl file name. For instance, my_geometry_part_Aluminum.stl file will be parsed as made of aluminum. See  
+Material should be encoded in the stl file name. For instance, my_geometry_part_Aluminum.stl file will be parsed as made of aluminum. To display a full list of currently available materials see:
 ```bash
 stl_gdml.py --materials 
 ```
-to display a full list of currently available materials. So far only basic materials are implemented.
+So far only basic materials are implemented. If not yet in the list, new materials can be added directly in the resulting gdml model following the example of already existing materials.
 
 
 # Examples:
