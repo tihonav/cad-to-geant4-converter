@@ -39,7 +39,7 @@ This example shows how to load gdml model that you obtained after conversion in 
 
  - Login to lxplus machine:
  ```bash
- ssh -XY yourcernmane@lxplus.cern.ch
+ ssh -XY yourcernlogin@lxplus.cern.ch
  ```
  
  - Set up python2.7, GCC, GEANT4, xerces (required by GEANT4 gdml module) 
@@ -47,10 +47,17 @@ This example shows how to load gdml model that you obtained after conversion in 
  source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces.sh
  ```
  
- - Pick up example .stl model and put it into your working directory
+ - Get and compile GEANT4 gdml example
+ ```bash
+ cp -r /afs/cern.ch/sw/lcg/external/geant4/9.6.p03/share/examples/extended/persistency/gdml/G01 ~/
+ cd ~/G01
+ make
+ ```
+ 
+ - Pick up example .stl model and put it into your home directory
  ```bash
  cp -r /afs/cern.ch/work/a/andrii/public/GDML/Example/IBL_MODULE_EXAMPLE ~/
- cd IBL_MODULE_EXAMPLE
+ cd ~/IBL_MODULE_EXAMPLE
  ```
  
  - Convert the model 
