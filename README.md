@@ -38,8 +38,13 @@ As a result, you will get a test_model.gdml file, which you can use as a GEANT4 
 This example shows how to load gdml model that you obtained after conversion in GEANT4. Running this example requires either GEANT4 installed on your computer, or having access to CERN lxplus machines. Instructions are given for the lxplus case. This example can be done independently of the first one.
 
  - Login to lxplus machine:
- ``` bash
+ ```bash
  ssh -XY yourcernmane@lxplus.cern.ch
  ```
+ 
+ - Set up python2.7, GCC, GEANT4, xerces (required by GEANT4 gdml module) 
+```bash
+source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces.sh
+```
 
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
