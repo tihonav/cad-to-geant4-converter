@@ -9,6 +9,9 @@ The conversion of CAD geometry implies following steps:
 
 NOTE: so far, a Vacuum materail is assigned to the volumes in the resulting GDML file. Proper materials can be then defined iside the gdml themselves by the user. It is planned to implement automatic (semi-automatic) assignment of material in the next revisions of this software.
 
+PREREQUISITS:
+ - python2.7 or higher 
+
 TESTED OS: 
  - Mac OS X
  - Linux
