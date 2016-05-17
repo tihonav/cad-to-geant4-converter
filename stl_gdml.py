@@ -6,7 +6,7 @@ Describtion: a light-weight tool to convert CAD drawings
 
 import ast
 import sys
-import numpy as np
+#import numpy as np
 import __main__
 
 EMAIL         = "andrii.tykhonov@cernSPAMNOT.ch"
