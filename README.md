@@ -54,15 +54,17 @@ This example shows how to load gdml model that you obtained after conversion in 
  make
  ```
  
- - Pick up example .stl model and put it into your home directory
+ - Pick up example .stl model, put it into your home directory, and convert into gdml
  ```bash
  cp -r /afs/cern.ch/work/a/andrii/public/GDML/Example/IBL_MODULE_EXAMPLE ~/
  cd ~/IBL_MODULE_EXAMPLE
+ python2.7 [path_to_cad_gdml_converter]/stl_gdml.py TEST ./*.stl
  ```
  
- - Convert the model 
+ - Get a nice GEANT4 visualization config file and put it where your model is, run visualization
  ```bash
- python2.7 [path_to_cad_gdml_converter]/stl_gdml.py TEST ./*.stl
+ cp /afs/cern.ch/work/a/andrii/public/GDML/Example/vis.mac ./
+ load_gdml TEST.gdml 
  ```
 
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
