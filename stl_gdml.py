@@ -244,7 +244,7 @@ MATERIALS = '''
    
 
 
-      <!-- Aluminum, Hineycomb, Carbon fibre, etc. (simple materials)>
+      <!-- Aluminum, Hineycomb, Carbon fibre, etc. (simple materials) -->
 
       <material formula="Al" name="Aluminum" state="solid">
            <D value="2.700" unit="g/cm3"/>
