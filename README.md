@@ -46,5 +46,16 @@ This example shows how to load gdml model that you obtained after conversion in 
  ```bash
  source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces.sh
  ```
+ 
+ - Pick up example .stl model and put it into your working directory
+ ```bash
+ cp -r /afs/cern.ch/work/a/andrii/public/GDML/Example/IBL_MODULE_EXAMPLE ~/
+ cd IBL_MODULE_EXAMPLE
+ ```
+ 
+ - Convert the model 
+ ```bash
+ python2.7 [path_to_cad_gdml_converter]/stl_gdml.py TEST ./*.stl
+ ```
 
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
