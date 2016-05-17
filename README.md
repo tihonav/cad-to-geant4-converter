@@ -20,6 +20,13 @@ NOTE: so far, a Vacuum materail is assigned to the volumes in the resulting GDML
 ```bash
 python stl_gdml.py out_name  input_file_1.stl input_file_2.stl input_file_N.stl
 ```
+# Materials
+
+Material are encoded in the stl file name. For instance, my_geometry_part_Aluminum.stl file will be parsed as made of aluminum. See  
+```bash
+stl_gdml.py --materials 
+```
+to display a full list of currently available materials. So far only basic materials are implemented.
 
 
 # Examples:
