@@ -66,5 +66,5 @@ This example shows how to load gdml model that you obtained after conversion in 
  cp /afs/cern.ch/work/a/andrii/public/GDML/Example/vis.mac ./
  load_gdml TEST.gdml 
  ```
-
+Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
