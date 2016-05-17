@@ -589,7 +589,7 @@ if len(sys.argv)<3:
 	__print__('Not enough argumnets provided! see  "python %s -h" for more details'%MODULE_NAME)
 	raise SystemExit
 if ".stl" in sys.argv[1]:
-	__print__('Please provide input file name! see  "python %s -h" for more details'%MODULE_NAME)
+	__print__('Please provide output file name! see  "python %s -h" for more details'%MODULE_NAME)
         raise SystemExit
 creat_gdml_bundle(sys.argv[1],sys.argv[2:])
 	
