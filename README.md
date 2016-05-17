@@ -43,8 +43,8 @@ This example shows how to load gdml model that you obtained after conversion in 
  ```
  
  - Set up python2.7, GCC, GEANT4, xerces (required by GEANT4 gdml module) 
-```bash
-source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces.sh
-```
+ ```bash
+ source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces.sh
+ ```
 
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
