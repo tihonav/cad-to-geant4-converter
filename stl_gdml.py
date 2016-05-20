@@ -7,6 +7,7 @@ Describtion: a light-weight tool to convert CAD drawings
 import ast
 import sys
 #import numpy as np
+from bisect import bisect
 import __main__
 
 EMAIL         = "andrii.tykhonov@cernSPAMNOT.ch"
@@ -469,7 +470,7 @@ def get_triangles(fname):
 	lines  = f.readlines()
 	nlines = len(lines)
 	for l in xrange(nlines):
-		__print_progress_bar__("Processing file %s: "%fname,100.*(l+1)/nlines)
+		__print_progress_bar__("Processing file     %s: "%fname,100.*(l+1)/nlines)
 		line = lines[l].lower()
 	
 
@@ -519,50 +520,75 @@ def stl_to_gdml(fname):
 	outname = __get_inputname_base__(fname)
 	outsolidname = outname+"-SOL"
 
+	# sort vertices
+	triangles = []
+	sortedvertexes = []
+	for triangle in get_triangles(fname):
+		triangles.append(triangle)
+		for vertex in triangle["vertex"]:
+			x = __float_to_str__(vertex[0])
+			y = __float_to_str__(vertex[1])
+			z = __float_to_str__(vertex[2])
+			thekey = x+y+z
+			sortedvertexes.append(thekey)
 
+	#__print__("Soring vertices - may take some time...")
+	sortedvertexes = sorted(sortedvertexes)
+	#__print__("... done sorting")
 
-	# get body
-	allvertices = []
+	# remove duplicates from verticves
+	previous = None
+	sortednoduplicates = []
+	vertexidnoduplicates = []
+	for tmpvertex in sortedvertexes:
+		if tmpvertex == previous: continue
+		sortednoduplicates.append(tmpvertex)
+		vertexidnoduplicates.append(None)
+		previous = tmpvertex
+	
+	# create gdml vertices
+	# create gdml solids
 	vertices = '\n    <define>\n'
 	solids   = '\n    <solids>\n'
 	solids  += '        <tessellated aunit="%s" lunit="%s" name="%s">\n'%(AUNIT,LUNIT,outsolidname)
-	for triangle in get_triangles(fname):
+	vertexid = 0
+	for i in xrange(len(triangles)):
+		triangle = triangles[i]
+		__print_progress_bar__("generating gdml for %s: "%fname,100.*(i+1)/len(triangles))
 		if len(triangle["vertex"])!=3:
 			__print_and_terminate__("Illegal number of vertices per triangle: "+str(triangle["vertex"]))
 		ids = []
 		for vertex in triangle["vertex"]:
-			# check if vertex already exists
 			x = __float_to_str__(vertex[0])
 			y = __float_to_str__(vertex[1])
 			z = __float_to_str__(vertex[2])
-			try:
-				piece = allvertices[-100:]
-				offset = len(allvertices) - len(piece)
-				theindex = offset + piece.index([x,y,z])
-			except ValueError:
-				theindex = -1
-
-			# if vertex doues not exist - add it
-			if theindex<0:
-				allvertices.append([x,y,z])
-				theindex = len(allvertices)-1
+			thekey = x+y+z
+			theitem = bisect(sortednoduplicates, thekey)-1
+			assert(theitem>=0)
+			# add vertex to gdml
+			if vertexidnoduplicates[theitem] is None: 
 				vertices+='        <position name="%s_v%d" unit="%s" x="%s" y="%s" z="%s"/>\n'%	(outname,
-														theindex,
+														vertexid,
 														LUNIT,
 														x,
 														y,
 														z
 														) 
-			# add vertex to the triangle
-			ids.append(theindex)
-				
+				vertexidnoduplicates[theitem] = vertexid
+				vertexid+=1
+			#  add vertex to facet
+			ids.append(vertexidnoduplicates[theitem])
 
+		# create facet
 		orientation = __get_orientation__(triangle["normal"], *triangle["vertex"])
 		idsforsolid = ids if orientation>0 else [ids[2],ids[1],ids[0]]
 		solids+= '             <triangular vertex1="%s_v%d" vertex2="%s_v%d" vertex3="%s_v%d"/>\n'%(outname, idsforsolid[0],
 													outname, idsforsolid[1],
 													outname, idsforsolid[2]
 													)
+
+			
+			
 	
 	# finalize 
 	vertices+= '    </define>\n'
