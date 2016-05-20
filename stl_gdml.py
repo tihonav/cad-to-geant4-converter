@@ -522,24 +522,38 @@ def stl_to_gdml(fname):
 
 
 	# get body
+	allvertices = []
 	vertices = '\n    <define>\n'
 	solids   = '\n    <solids>\n'
 	solids  += '        <tessellated aunit="%s" lunit="%s" name="%s">\n'%(AUNIT,LUNIT,outsolidname)
-	vertexid = 0
 	for triangle in get_triangles(fname):
 		if len(triangle["vertex"])!=3:
 			__print_and_terminate__("Illegal number of vertices per triangle: "+str(triangle["vertex"]))
 		ids = []
 		for vertex in triangle["vertex"]:
-			vertices+='        <position name="%s_v%d" unit="%s" x="%s" y="%s" z="%s"/>\n'%	(outname,
-													vertexid,
-													LUNIT,
-													__float_to_str__(vertex[0]),
-													__float_to_str__(vertex[1]),
-													__float_to_str__(vertex[2])
-													) 
-			ids.append(vertexid)
-			vertexid+=1
+			# check if vertex already exists
+			x = __float_to_str__(vertex[0])
+			y = __float_to_str__(vertex[1])
+			z = __float_to_str__(vertex[2])
+			try:
+				theindex = allvertices[-100:].index([x,y,z])
+			except ValueError:
+				theindex = -1
+
+			# if vertex doues not exist - add it
+			if theindex<0:
+				allvertices.append([x,y,z])
+				theindex = len(allvertices)-1
+				vertices+='        <position name="%s_v%d" unit="%s" x="%s" y="%s" z="%s"/>\n'%	(outname,
+														theindex,
+														LUNIT,
+														x,
+														y,
+														z
+														) 
+			# add vertex to the triangle
+			ids.append(theindex)
+				
 
 		orientation = __get_orientation__(triangle["normal"], *triangle["vertex"])
 		idsforsolid = ids if orientation>0 else [ids[2],ids[1],ids[0]]
