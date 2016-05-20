@@ -536,7 +536,9 @@ def stl_to_gdml(fname):
 			y = __float_to_str__(vertex[1])
 			z = __float_to_str__(vertex[2])
 			try:
-				theindex = allvertices[-100:].index([x,y,z])
+				piece = allvertices[-100:]
+				offset = len(allvertices) - len(piece)
+				theindex = offset + piece.index([x,y,z])
 			except ValueError:
 				theindex = -1
 
