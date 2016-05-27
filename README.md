@@ -74,3 +74,16 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
  ```
 Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
+
+# Note on preparation of STL file
+
+STL model can be created out of CAD drawing (.step files) in most of contemproary CAD packages, for example in CATIA. A thing to keep in mind that the level of details in STL is configurable.
+
+At least in CATIA there is a specific module to create stl file and the user can choose the level of details to implement. Also, there you can "decimate" facettes if you original stl file is too detailed. You can find information about this module on the CAD site of CERN:
+
+[CAERN CAD Support(https://edms.cern.ch/ui/file/1519241/Last_released/1519241.pdf) 
+
+
+In the table on page 4, you can see that the stl file of the same model can vary from 45 Kb to 10,419 kb depending on parameters you have chosen.
+ 
+In a more general way, it is always beneficial to remove details in the geometry before tessellation like holes, chanfers, fillets. The impact on the stl final model size is far from being negligible.
