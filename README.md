@@ -1,8 +1,8 @@
 ### Table of Contents
-**[Introduction](#introduction)**  
-**[Prerequisits](#prerequisits)**  
-**[Usage](#usage)**  
-**[Materials](#materials)** 
+**[Introduction](#introduction)**
+**[Prerequisits](#prerequisits)**
+**[Usage](#usage)**
+**[Materials](#materials)**
 **[Note on preparation of STL file](#note-on-preparation-of-stl-file)**  
 
 
@@ -89,7 +89,7 @@ The STL model can be created out of CAD drawing (.step files) in most of contemp
 
 At least in CATIA there is a specific module to create stl file and user can choose the level of details to implement. Also, there you can "decimate" facettes if you original stl file is too detailed. You can find information about this module on the CAD site of CERN:
 
-[CAERN CAD Support](https://edms.cern.ch/ui/file/1519241/Last_released/1519241.pdf) 
+[CERN CAD Support](https://edms.cern.ch/ui/file/1519241/Last_released/1519241.pdf) 
 
 
 In the table on page 4, you can see that the stl file of the same model can vary from 45 Kb to 10,419 kb depending on parameters you have chosen.
