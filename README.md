@@ -1,7 +1,7 @@
 ### Table of Contents
 **[Introduction](#introduction)**  
 **[Prerequisits](#prerequisits)**  
-**[Note ond preparation of STL file](#note-on-preparation-of-stl-file)**  
+**[Note on preparation of STL file](#note-on-preparation-of-stl-file)**  
 
 
 ## Introduction
