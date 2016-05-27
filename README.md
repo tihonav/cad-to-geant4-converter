@@ -1,8 +1,8 @@
 ### Table of Contents
-**[Introduction](#introduction)**
-**[Prerequisits](#prerequisits)**
-**[Usage](#usage)**
-**[Materials](#materials)**
+**[Introduction](#introduction)**  
+**[Prerequisits](#prerequisits)**  
+**[Usage](#usage)**  
+**[Materials](#materials)**  
 **[Note on preparation of STL file](#note-on-preparation-of-stl-file)**  
 
 
