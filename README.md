@@ -1,4 +1,8 @@
-# Introduction
+### Table of Contents
+**[Introduction](#introduction)**  
+
+
+## Introduction
 
 This is a light-weight tool for converting of CAD drawings into the GDML (geometry secription markup language). GDML is the format used by particle-physics simulation packages, like GEANT4. Input files should be provided in .stl format, which is supported by majority of CAD developing software. 
 
@@ -8,18 +12,18 @@ The tool works as follows:
   
 
 
-# Prerequisits:
+## Prerequisits:
  - python2.7 or higher 
 
-# Tested Operating Systems: 
+## Tested Operating Systems: 
  - Mac OS X
  - Linux
 
-# Usage: 
+## Usage: 
 ```bash
 python stl_gdml.py out_name  input_file_1.stl input_file_2.stl input_file_N.stl
 ```
-# Materials
+## Materials
 
 Material should be encoded in the stl file name. For instance, my_geometry_part_Aluminum.stl file will be parsed as made of aluminum. To display a full list of currently available materials see:
 ```bash
@@ -28,7 +32,7 @@ stl_gdml.py --materials
 So far only basic materials are implemented. If not yet in the list, new materials can be added directly in the resulting gdml model following the example of already existing materials.
 
 
-# Examples:
+## Examples:
 
 ### 1. Basic example - conversion from stl to gdml: 
 Before running the example, download and unzip the project
@@ -75,11 +79,11 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
 Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
 
-# Note on preparation of STL file
+## Note on preparation of STL file
 
-STL model can be created out of CAD drawing (.step files) in most of contemproary CAD packages, for example in CATIA. A thing to keep in mind that the level of details in STL is configurable.
+The STL model can be created out of CAD drawing (.step files) in most of contemproary CAD packages, for example in CATIA. However, one should keep in mind that the level of details in STL is configurable.
 
-At least in CATIA there is a specific module to create stl file and the user can choose the level of details to implement. Also, there you can "decimate" facettes if you original stl file is too detailed. You can find information about this module on the CAD site of CERN:
+At least in CATIA there is a specific module to create stl file and user can choose the level of details to implement. Also, there you can "decimate" facettes if you original stl file is too detailed. You can find information about this module on the CAD site of CERN:
 
 [CAERN CAD Support(https://edms.cern.ch/ui/file/1519241/Last_released/1519241.pdf) 
 
