@@ -3,7 +3,6 @@
 **[Prerequisits](#prerequisits)**  
 **[Usage](#usage)**  
 **[Materials](#materials)** 
-**[Examples](#examples)**
 **[Note on preparation of STL file](#note-on-preparation-of-stl-file)**  
 
 
