@@ -1,6 +1,8 @@
 ### Table of Contents
 **[Introduction](#introduction)**  
 **[Prerequisits](#prerequisits)**  
+**[Note on preparation of STL file](#note-on-preparation-of-stl-file)**  
+
 
 ## Introduction
 
@@ -15,7 +17,7 @@ The tool works as follows:
 ## Prerequisits:
  - python2.7 or higher 
 
-### Tested Operating Systems: 
+#### Tested Operating Systems: 
  - Mac OS X
  - Linux
 
