@@ -10,6 +10,9 @@ import sys
 from bisect import bisect
 import __main__
 
+if int(sys.version_info.major)>=3:
+	xrange = range
+
 EMAIL         = "andrii.tykhonov@cernSPAMNOT.ch"
 ERROR_CONTACT = "\nPlease contact %s for more information"%EMAIL
 
@@ -388,21 +391,21 @@ def __is_help__():
 	for arg in sys.argv:
 		if "-h" in arg.lower() and arg[0]=="-": ishelp = True 
 		if "help" in arg.lower(): ishelp = True
-	if ishelp: print HELP_MESSAGE
+	if ishelp: print (HELP_MESSAGE)
 
 
 def __print_error__(text):
-	print text
+	print (text)
 
 
 def __print__(text):
-	print text
+	print (text)
 
 
 def __print_progress_bar__(text,percentage):
 	sys.stdout.write("\r%s %5.1f%%"%(text,percentage))
 	sys.stdout.flush()
-	if percentage==100.: print
+	if percentage==100.: print()
 
 
 def __print_and_terminate__(text):
@@ -414,7 +417,7 @@ def __print_and_terminate__(text):
 def __str_to_float__(text):
 	try:
 		return ast.literal_eval(text)
-	except Exception, e:
+	except Exception as e:
 		__print_and_terminate__("String to float conversion failed due to: "+str(e))
 
 def __float_to_str__(val):
@@ -682,7 +685,7 @@ if matchnames:
 	raise SystemExit
 if ".stl" in sys.argv[1]:
 	__print__('Please provide output file name! see  "python %s -h" for more details'%MODULE_NAME)
-        raise SystemExit
+	raise SystemExit
 creat_gdml_bundle(sys.argv[1].split('.gdml')[0],sys.argv[2:])
 	
 	
