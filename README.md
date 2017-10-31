@@ -30,12 +30,12 @@ python stl_gdml.py out_name  input_file_1.stl input_file_2.stl input_file_N.stl
 ```
 
 This will create:
-  - out_name.gdml       <--- top lvel gdml
-  - input_file_1.gdml  
+  - out_name.gdml       - top level gdml
+  - input_file_1.gdml   
   - input_file_2.gdml  
   - input_file_N.gdml
     
-Note, even if there is one stl file, two gdml files will be created:
+Note, even if there is one input .stl file, two gdml files will be created:
   - out_name.gdml 
   - input_file_1.gdml  
   
