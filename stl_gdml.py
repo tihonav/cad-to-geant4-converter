@@ -675,6 +675,11 @@ if "--materials" in sys.argv:
 if len(sys.argv)<3:
 	__print__('Not enough argumnets provided! see  "python %s -h" for more details'%MODULE_NAME)
 	raise SystemExit
+matchnames = [item for item in sys.argv[2:] if sys.argv[1].lower() in item.lower() or sys.argv[1].lower().split('.gdml')[0] in item.lower()]
+if matchnames:
+	__print__('[out_name] should not coincide with one of the input .stl file names  "python %s -h" for more details'%MODULE_NAME)
+	__print__('[out_name] = ' + sys.argv[1] + ' mathces with ' + matchnames[0] + ' - please use different name for the [out_name], for example "top.gdml"')
+	raise SystemExit
 if ".stl" in sys.argv[1]:
 	__print__('Please provide output file name! see  "python %s -h" for more details'%MODULE_NAME)
         raise SystemExit
