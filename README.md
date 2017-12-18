@@ -11,7 +11,7 @@
 
 The tool performs conversion of CAD drawings into the GDML format (Geometry Decription Markup Language). GDML is the format used in particle-physics simulation packages, like GEANT4. Input files should be provided in stl format, which is supported by majority of CAD developer software. 
 
-How it works: as an input to the tool, a set of stl files is provided where each stl file represents a part of the geometry, corresponding to one single material (input_file_1.stl, input_file_2.stl, ...). The tool converts this set of .stl file into the GDML model in one step.
+How it works: as an input to the tool, a set of stl files is provided where each stl file represents a part of the geometry, corresponding to one single material (input_file_1.stl, input_file_2.stl, ...). The tool converts this set of stl file into the GDML model.
   
 
 
