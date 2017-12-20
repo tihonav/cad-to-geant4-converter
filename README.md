@@ -39,7 +39,7 @@ Note, even if there is one input .stl file, two gdml files will be created:
   
 ## Materials
 
-Material should be encoded in the stl file name. For instance, my_geometry_part_Aluminum.stl file will be parsed as made of aluminum. To display a full list of currently available materials see:
+Material name should be simply put in the stl file name. For instance, my_geometry_part_Aluminum.stl file will be parsed as made of aluminum. To display a full list of currently available materials see:
 ```bash
 python stl_gdml.py --materials 
 ```
