@@ -24,7 +24,7 @@ How it works: as an input to the tool, a set of stl files is provided where each
 
 ## Usage: 
 ```bash
-python    stl_gdml.py    out_name    input_file_1.stl ... input_file_N.stl
+python  stl_gdml.py  out_name  input_file_1.stl ... input_file_N.stl
 ```
 
 This will create:
