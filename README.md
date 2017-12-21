@@ -65,13 +65,13 @@ So far only basic materials are implemented. If not yet in the list, new materia
 ## Examples:
 
 ### 1. Basic example - conversion from stl to gdml: 
-Before running the example, download and unzip the project
+Before running the example, download and unzip this repository. Then do:
 ```bash
 cd cad-to-geant4-converter/Example
 python ../stl_gdml.py test_model ./*.stl 
 ```
 
-As a result, you will get a test_model.gdml file, which you can use as a GEANT4 geometry. If you take a look inside the test_model.gdml, you will find different sub-detector parts, each part corresponding to one intial .stl file.
+As a result, you will get a test_model.gdml file, which you can use as a GEANT4 geometry. Inside the ```test_model.gdml```, one can see different sub-detector parts, each part corresponding to one intial ```.stl``` file.
 
 ### 2. Visualization of resulting model in GEANT4. 
 
