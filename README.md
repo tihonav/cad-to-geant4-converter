@@ -28,14 +28,30 @@ python  stl_gdml.py  out_name  input_file_1.stl ... input_file_N.stl
 ```
 
 This will create:
-  - out_name.gdml       - top level gdml
-  - input_file_1.gdml   
-  - input_file_2.gdml  
-  - input_file_N.gdml
+  - ```out_name.gdml```       - top level gdml
+  - ```input_file_1.gdml```   
+  - ```input_file_2.gdml```  
+  - ```input_file_N.gdml```
     
-Note, even if there is one input .stl file, two gdml files will be created:
-  - out_name.gdml 
-  - input_file_1.gdml  
+Note, even if there is one input ```.stl``` file, two ```.gdml``` files will be created:
+  - ```out_name.gdml``` 
+  - ```input_file_1.gdml```  
+  
+## Input 
+Input files should be in the ASCII STL format. Usually they are assigned an extension ```.stl```. For some CAD software they may also be assigned an extension ```.ast```. A typical ASCII STL file have a following structure:
+
+```
+solid CATIA STL
+  facet normal  3.981976e-001 -3.981976e-001 -8.263641e-001
+    outer loop
+      vertex -4.024131e+002 -4.421275e+002  6.645833e+001
+      vertex -4.092353e+002 -4.480332e+002  6.601675e+001
+      vertex -4.028713e+002 -4.416693e+002  6.601675e+001
+    endloop
+  endfacet
+....
+
+```
   
 ## Materials
 
