@@ -38,7 +38,7 @@ Note, even if there is one input ```.stl``` file, two ```.gdml``` files will be 
   - ```input_file_1.gdml```  
   
 ## Input 
-Input files should be in the ASCII STL format. Usually they are assigned an extension ```.stl```. For some CAD software they may also be assigned an extension ```.ast```. A typical ASCII STL file have a following structure:
+Input files should be in the ASCII STL format. Usually they are assigned an extension ```.stl```. For some CAD software they may also be assigned an extension ```.ast```. A typical ASCII STL file has a following structure:
 
 ```
 solid CATIA STL
