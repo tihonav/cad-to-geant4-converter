@@ -2,9 +2,10 @@
 **[Introduction](#introduction)**  
 **[Prerequisits](#prerequisits)**  
 **[Usage](#usage)**  
+**[Input](#input)**  
 **[Materials](#materials)**  
 **[Examples](#examples)**  
-**[Note on preparation of STL file](#note-on-preparation-of-stl-file)**  
+**[Note on the STL file](#note-on-the-stl-file)**  
 
 
 ## Introduction
@@ -15,14 +16,14 @@ How it works: as an input to the tool, a set of stl files is provided where each
   
 
 
-## Prerequisits:
+## Prerequisits
  - python2.7 or higher 
 
-##### Tested Operating Systems: 
+##### Tested Operating Systems
  - Mac OS X
  - Linux
 
-## Usage: 
+## Usage
 ```bash
 python  stl_gdml.py  out_name  input_file_1.stl ... input_file_N.stl
 ```
@@ -62,7 +63,7 @@ python stl_gdml.py --materials
 So far only basic materials are implemented. If not yet in the list, new materials can be added directly in the resulting gdml model following the example of already existing materials.
 
 
-## Examples:
+## Examples
 
 ### 1. Basic example - conversion from stl to gdml: 
 Before running the example, download and unzip this repository. Then do:
@@ -109,7 +110,7 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
 Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
 
-## Note on preparation of STL file
+## Note on the of STL file
 
 The STL model can be created out of CAD drawing (.step files) in most of contemproary CAD packages, for example in CATIA. However, one should keep in mind that the level of details in STL is configurable.
 
