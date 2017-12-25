@@ -110,7 +110,7 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
 Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
 
-## Note on the of STL file
+## Note on the STL file
 
 The STL model can be created out of CAD drawing (.step files) in most of contemproary CAD packages, for example in CATIA. However, one should keep in mind that the level of details in STL is configurable.
 
