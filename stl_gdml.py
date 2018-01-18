@@ -478,7 +478,7 @@ def get_triangles(fname):
 	
 
 		# start facet 
-		if " facet " in line:
+		if "facet " in line:
 			solid = {}
 
 		# Get normal to triangle
