@@ -22,6 +22,7 @@ How it works: as an input to the tool, a set of stl files is provided where each
 ##### Tested Operating Systems
  - Mac OS X
  - Linux
+ - Windows 10 (64 bit)
 
 ## Usage
 ```bash
