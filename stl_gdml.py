@@ -41,8 +41,14 @@ MATERIALS_INFO = '''
 #@            - Kapton
 #@            - Gold
 #@            - Nickel
+#@            - Titanium
+#@            - Silver
+#@            - Palladium
+#@            - Tin
+#@            - Platinum
 #@       - Detector materials: 
 #@            - Silicon
+#@            - CdTe
 #@            - Tungsten
 #@            - PMT
 #@            - BGO
@@ -52,6 +58,8 @@ MATERIALS_INFO = '''
 #@            - FibrousGlass
 #@            - PDMS: Polydimethylsiloxane (Silicon Rubber)
 #@            - EpoxyResin
+#@            - AlNO
+#@            - SAC305
 #@       
 #@  Please contact the author to implement more materials, 
 #@  or (and) feel free to implement them yourself
@@ -68,7 +76,13 @@ MATERIALS_LIST = [
 	{"name" : "Copper",       "group" : "PCB"},
 	{"name" : "Gold",         "group" : "PCB"},
 	{"name" : "Nickel",       "group" : "PCB"},
+	{"name" : "Titanium",     "group" : "PCB"},
+	{"name" : "Silver",       "group" : "PCB"},
+	{"name" : "Palladium",    "group" : "PCB"},
+	{"name" : "Tin",          "group" : "PCB"},
+	{"name" : "Platinum",     "group" : "PCB"},
 	{"name" : "Silicon",      "group" : "Detector Elements"},
+	{"name" : "CdTe",         "group" : "Detector Elements"},
 	{"name" : "Tungsten",     "group" : "Detector Elements"},
 	{"name" : "PMT",          "group" : "Detector Elements"},
 	{"name" : "BGO",          "group" : "Detector Elements"},
@@ -77,12 +91,14 @@ MATERIALS_LIST = [
 	{"name" : "FibrousGlass", "group" : "Other"},
 	{"name" : "PDMS",         "group" : "Other"},
 	{"name" : "EpoxyResin",   "group" : "Other"},
+	{"name" : "AlNO",         "group" : "Other"},
+	{"name" : "SAC305",       "group" : "Other"},
 ]
 
 MATERIALS = '''
     <materials>
         <!--          -->
-	<!-- elements -->
+        <!-- elements -->
         <!--          -->
         <!-- http://www-cdf.fnal.gov/~kirby/lbne_geo_tests/lbne_10kT_Materials.gdml -->
         <element name="videRef"    formula="VACUUM" Z="1"> <atom value="1."/>       </element>
@@ -106,7 +122,10 @@ MATERIALS = '''
         <element name="copper"     formula="Cu"  Z="29">   <atom value="63.55"/>    </element>
         <element name="germanium"  formula="Ge"  Z="32">   <atom value="72.63"/>    </element>
         <element name="bromine"    formula="Br"  Z="35">   <atom value="79.904"/>   </element>
-        <element name="aurum"      formula="Au"  Z="79">   <atom value="196.97"/>   </element>
+        <element name="palladium"  formula="Pd"  Z="46">   <atom value="106.42"/>   </element>
+        <element name="tin"        formula="Sn"  Z="50">   <atom value="118.71"/>   </element>
+        <element name="platinum"   formula="Pt"  Z="78">   <atom value="195.084"/>  </element>
+        <element name="gold"       formula="Au"  Z="79">   <atom value="196.97"/>   </element>
         <element name="tungsten"   formula="W"   Z="74">   <atom value="183.84"/>   </element>
         <element name="bismuth"    formula="Bi"  Z="83">   <atom value="208.980"/>  </element>
 
@@ -122,6 +141,54 @@ MATERIALS = '''
             <fraction n="0.801" ref="B11"/>
         </element>
 
+        <isotope name="Ag107"  N="60" Z="47">   <atom value="106.905092"/>   </isotope>
+        <isotope name="Ag109"  N="62" Z="47">   <atom value="108.904756"/>   </isotope>
+        <element name="silver">
+                <!-- https://www.webelements.com/silver/isotopes.html -->
+                <fraction n="0.51839" ref="Ag107"/>
+                <fraction n="0.48161" ref="Ag109"/>
+        </element>
+
+        <isotope name="Cd106Cd" N="58" Z="48"> <atom unit="g/mole" value="105.906461"/>  </isotope>
+        <isotope name="Cd108Cd" N="60" Z="48"> <atom unit="g/mole" value="107.904176"/>  </isotope>
+        <isotope name="Cd110Cd" N="62" Z="48"> <atom unit="g/mole" value="109.903005"/>  </isotope>
+        <isotope name="Cd111Cd" N="63" Z="48"> <atom unit="g/mole" value="110.904182"/>  </isotope>
+        <isotope name="Cd112Cd" N="64" Z="48"> <atom unit="g/mole" value="111.902757"/>  </isotope>
+        <isotope name="Cd113Cd" N="65" Z="48"> <atom unit="g/mole" value="112.904400"/>  </isotope>
+        <isotope name="Cd114Cd" N="66" Z="48"> <atom unit="g/mole" value="113.903357"/>  </isotope>
+        <isotope name="Cd116Cd" N="68" Z="48"> <atom unit="g/mole" value="115.904755"/>  </isotope>
+        <element name="cadmium">
+                <!-- isotopes taken in the natural abundance -->
+                <!-- taken from https://www.webelements.com/cadmium/isotopes.html -->
+                <fraction ref="Cd106Cd" n="0.0125"/>
+                <fraction ref="Cd108Cd" n="0.0089"/>
+                <fraction ref="Cd110Cd" n="0.1249"/>
+                <fraction ref="Cd111Cd" n="0.1280"/>
+                <fraction ref="Cd112Cd" n="0.2413"/>
+                <fraction ref="Cd113Cd" n="0.1222"/>
+                <fraction ref="Cd114Cd" n="0.2873"/>
+                <fraction ref="Cd116Cd" n="0.0749"/>
+        </element>
+
+        <isotope name="Te120Te" N="68" Z="52"> <atom unit="g/mole" value="119.904048"/>  </isotope>
+        <isotope name="Te122Te" N="70" Z="52"> <atom unit="g/mole" value="121.903050"/>  </isotope>
+        <isotope name="Te123Te" N="71" Z="52"> <atom unit="g/mole" value="122.9042710"/>  </isotope>
+        <isotope name="Te124Te" N="72" Z="52"> <atom unit="g/mole" value="123.9028180"/>  </isotope>
+        <isotope name="Te125Te" N="73" Z="52"> <atom unit="g/mole" value="124.9044285"/>  </isotope>
+        <isotope name="Te126Te" N="74" Z="52"> <atom unit="g/mole" value="125.9033095"/>  </isotope>
+        <isotope name="Te128Te" N="76" Z="52"> <atom unit="g/mole" value="127.904463"/>  </isotope>
+        <isotope name="Te130Te" N="78" Z="52"> <atom unit="g/mole" value="129.906229"/>  </isotope>
+        <element name="tellurium">
+                <!-- see https://www.webelements.com/tellurium/isotopes.html -->
+                <fraction ref="Te120Te" n="0.0009"/>
+                <fraction ref="Te122Te" n="0.0255"/>
+                <fraction ref="Te123Te" n="0.0089"/>
+                <fraction ref="Te124Te" n="0.0474"/>
+                <fraction ref="Te125Te" n="0.0707"/>
+                <fraction ref="Te126Te" n="0.1884"/>
+                <fraction ref="Te128Te" n="0.3174"/>
+                <fraction ref="Te130Te" n="0.3408"/>
+        </element>
 
 
     
@@ -250,7 +317,7 @@ MATERIALS = '''
    
      <material name="Gold" state="solid">
            <D value="19.32" unit="g/cm3"/>
-           <fraction n="1." ref="aurum"/>
+           <fraction n="1." ref="gold"/>
      </material>
    
    
@@ -258,6 +325,80 @@ MATERIALS = '''
            <D value="8.96" unit="g/cm3"/>
            <fraction n="1." ref="nickel"/>
      </material>
+
+     <material name="Titanium" state="solid">
+           <!--http://www.rsc.org/periodic-table/element/22/titanium -->
+           <D value="4.506" unit="g/cm3"/>
+           <fraction n="1." ref="titanium"/>
+     </material>
+
+
+     <material name="Silver" state="solid">
+           <!-- see https://en.wikipedia.org/wiki/Silver -->
+           <D value="10.49" unit="g/cm3"/>
+           <fraction n="1." ref="silver"/>
+     </material>
+
+     <material name="Cadmium" state="solid">
+           <!-- see https://www.lenntech.com/periodic/elements/cd.htm -->
+           <D value="8.7" unit="g/cm3"/>
+           <fraction n="1." ref="cadmium"/>
+     </material>
+
+     <material name="Palladium" state="solid">
+           <!-- see http://www.rsc.org/periodic-table/element/46/palladium -->
+           <D value="12.0" unit="g/cm3"/>
+           <fraction n="1." ref="palladium"/>
+     </material>
+
+     <material name="Tin" state="solid">
+           <!-- see http://www.rsc.org/periodic-table/element/50/tin -->
+           <D value="7.287" unit="g/cm3"/>
+           <fraction n="1." ref="tin"/>
+     </material>
+
+     <material name="Tellurium" state="solid">
+           <!-- see http://www.rsc.org/periodic-table/element/52/tellurium -->
+           <D value="6.232" unit="g/cm3"/>
+           <fraction n="1." ref="tellurium"/>
+     </material>
+
+     <material name="Platinum" state="solid">
+           <!-- see http://www.rsc.org/periodic-table/element/78/platinum -->
+           <D value="21.5" unit="g/cm3"/>
+           <fraction n="1." ref="platinum"/>
+     </material>
+
+     <material name="Gold" state="solid">
+           <D value="19.32" unit="g/cm3"/>
+           <fraction n="1." ref="gold"/>
+     </material>
+
+
+     <!-- Passivation -->
+
+     <material name="AlNO" state="solid" formula="AlNO">
+           <!-- Aluminum oxynitride -->
+           <!-- see https://en.wikipedia.org/wiki/Aluminium_oxynitride -->
+           <!-- see https://webbook.nist.gov/cgi/formula?ID=B1000046&Mask=800 -->
+           <D value="3.6935" unit="g/cm3"/>
+           <composite n="1" ref="aluminum"/>
+           <composite n="1" ref="nitrogen"/>
+           <composite n="1" ref="oxygen"/>
+     </material>
+
+     <!-- Bonding -->
+
+     <material name="SAC305" state="solid">
+           <!-- see https://www.aimsolder.com/sites/default/files/alloy_sac305_tds.pdf -->
+           <!-- see https://cdn.sos.sk/productdata/73/d6/578230e0/sac305-sn96-5ag3cu0-5-0-7mm-1kg.pdf -->
+           <D value="7.37" unit="g/cm3"/>
+           <fraction n="0.965" ref="Tin"/>
+           <fraction n="0.030" ref="Silver"/>
+           <fraction n="0.005" ref="Copper"/>
+     </material>
+
+
    
    
      <!-- Kapton -->
@@ -300,6 +441,14 @@ MATERIALS = '''
           <D value="19.3" unit="g/cm3"/>
           <fraction n="1." ref="tungsten"/>
       </material> 
+
+     <!-- Cadmium Telluride -->
+     <material name="CdTe" state="solid">
+           <!--https://www.azom.com/article.aspx?ArticleID=8408-->
+           <D value="5.85" unit="g/cm3"/>
+           <composite n="1" ref="cadmium"/>
+           <composite n="1" ref="tellurium"/>
+     </material>
 
       <!-- PMT -->
       <!--sylgard 170, Silicon Rubber Polydimethylsiloxane(PDMS)-->
