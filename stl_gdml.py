@@ -369,11 +369,6 @@ MATERIALS = '''
            <fraction n="1." ref="platinum"/>
      </material>
 
-     <material name="Gold" state="solid">
-           <D value="19.32" unit="g/cm3"/>
-           <fraction n="1." ref="gold"/>
-     </material>
-
 
      <!-- Passivation -->
 
