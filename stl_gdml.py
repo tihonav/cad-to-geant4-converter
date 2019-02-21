@@ -416,8 +416,11 @@ MATERIALS = '''
       </material>
         
       <material name="CarbonFibre" state="solid">      
-           <D unit="g/cm3" value="0.145"/>
-           <fraction n="1.0" ref="carbon"/>      
+           <D unit="g/cm3" value="1.55"/>
+           <fraction n="0.85" ref="carbon"/>      
+           <fraction n="0.03" ref="hydrogen"/>      
+           <fraction n="0.04" ref="nitrogen"/>
+           <fraction n="0.08" ref="oxygen"/>
       </material>     
 
       <material name="Honeycomb" state="solid">
