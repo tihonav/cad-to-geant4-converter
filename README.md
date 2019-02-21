@@ -86,12 +86,12 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
  
  - Set up python2.7, GCC, GEANT4, xerces (required by GEANT4 gdml module) 
  ```bash
- source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces.sh
+ source /afs/cern.ch/work/a/andrii/public/GDML/setup_geant4_gdml_xerces_cvmfs.sh
  ```
  
  - Get and compile GEANT4 gdml example
  ```bash
- cp -r /afs/cern.ch/sw/lcg/external/geant4/9.6.p03/share/examples/extended/persistency/gdml/G01 ~/
+ cp -r /cvmfs/geant4.cern.ch/geant4/9.6.p03/share/examples/extended/persistency/gdml/G01 ~/
  cd ~/G01
  make
  ```
