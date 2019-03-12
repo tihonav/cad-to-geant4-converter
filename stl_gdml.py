@@ -1,7 +1,7 @@
 """
-Author:      Andrii Tykhonov (andrii.tykhonov@cern.ch)
-Describtion: a light-weight tool to convert CAD drawings 
-             (.stl) into geant4 compatible format (.gdml)
+Author      : Andrii Tykhonov (andrii.tykhonov@cern.ch)
+Description : A light-weight tool to convert CAD drawings 
+              (.stl) into geant4 compatible format (.gdml)
 """
 
 import ast
