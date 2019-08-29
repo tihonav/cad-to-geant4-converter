@@ -111,7 +111,7 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
 Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
 
-#### Installing Gean4 with visualization functionality on local computer
+#### Installing Gean4 with visualization functionality on a local computer
   - download ```geant4.10.X.tar``` from ```http://geant4.web.cern.ch/geant4/support/download.shtml```
   - unpack ```geant4.10.X.tar``` in directory ```<myG4Path>```.
   - ```cd <myG4Path>```
@@ -122,9 +122,7 @@ Finally you should be able to see your model as in the figure below:
   - ```make -j2``` (for duo-core machine)
   - ```make install```
 
-NOTE 1: use ```qt4```! ```qt5``` is currently not supported by Geant.
-
-NOTE 2: use of OpenGL is mandatory for a decent visualization!
+NOTE: please use ```qt4```. since ```qt5``` is currently not supported by Geant. The use of OpenGL in turn is mandatory  for a decent visualization!
 
 
 ## Note on the STL file
