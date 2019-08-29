@@ -111,6 +111,21 @@ This example shows how to load and visualize in GEANT4 the gdml model that you o
 Finally you should be able to see your model as in the figure below:
 ![alt text](https://github.com/tihonav/cad-to-geant4-converter/blob/master/Data/VisualizationExample.png "Logo Title Text 1")
 
+#### Installing Gean4 with visualization functionality on local computer
+  - download ```geant4.10.X.tar``` from ```http://geant4.web.cern.ch/geant4/support/download.shtml```
+  - unpack ```geant4.10.X.tar``` in directory ```<myG4Path>```.
+  - ```cd <myG4Path>```
+  - ```tar -zxf geant4.10.X.tar```
+  - ```mkdir geant4.10.X-build```
+  - ```cd geant4.10.X-build```
+  - ```cmake -DCMAKE_INSTALL_PREFIX=<myG4Path>/geant4.10.X-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_INSTALL_EXAMPLES=ON -DGEANT4_USE_QT=ON <myG4Path>/geant4.10.X ```
+  - ```make -j2``` (for duo-core machine)
+  - ```make install```
+
+NOTE: use ```qt4```, ```qt5``` is currently not supported by Geant.
+NOTE: use of OpenGL is mandatory for a decent visualization
+
+
 ## Note on the STL file
 
 The STL model can be created out of CAD drawing (.step files) in most of contemproary CAD packages, for example in CATIA. However, one should keep in mind that the level of details in STL is configurable.
