@@ -122,8 +122,9 @@ Finally you should be able to see your model as in the figure below:
   - ```make -j2``` (for duo-core machine)
   - ```make install```
 
-NOTE: use ```qt4```, ```qt5``` is currently not supported by Geant.
-NOTE: use of OpenGL is mandatory for a decent visualization
+NOTE 1: use ```qt4```! ```qt5``` is currently not supported by Geant.
+
+NOTE 2: use of OpenGL is mandatory for a decent visualization!
 
 
 ## Note on the STL file
