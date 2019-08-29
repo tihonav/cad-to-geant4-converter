@@ -122,8 +122,9 @@ Finally you should be able to see your model as in the figure below:
   - ```make -j2``` (for duo-core machine)
   - ```make install```
 
-NOTE: please use ```qt4```. since ```qt5``` is currently not supported by Geant. The use of OpenGL in turn is mandatory  for a decent visualization!
-
+NOTE: For MAC OSX, you may need to specify the location of QT librarries:
+```cmake -DCMAKE_INSTALL_PREFIX=../geant4.10.05.p01-install -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_INSTALL_EXAMPLES=ON -DGEANT4_USE_QT=ON -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/5.13.0/lib/cmake/Qt5Core/Qt5CoreConfig.cmake    ../geant4.10.05.p01 
+```
 
 ## Note on the STL file
 
