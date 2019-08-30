@@ -151,6 +151,14 @@ MATERIALS = '''
                 <fraction n="0.48161" ref="Ag109"/>
         </element>
 
+        <isotope name="Sb121"  N="70" Z="51">   <atom value="120.9038157"/>   </isotope>
+        <isotope name="Sb122"  N="71" Z="51">   <atom value="121.9051737"/>   </isotope>
+        <element name="antimony">
+                <!-- https://en.wikipedia.org/wiki/Isotopes_of_antimony -->
+                <fraction n="0.572" ref="Sb121"/>
+                <fraction n="0.428" ref="Sb122"/>
+        </element>
+
         <isotope name="Cd106Cd" N="58" Z="48"> <atom unit="g/mole" value="105.906461"/>  </isotope>
         <isotope name="Cd108Cd" N="60" Z="48"> <atom unit="g/mole" value="107.904176"/>  </isotope>
         <isotope name="Cd110Cd" N="62" Z="48"> <atom unit="g/mole" value="109.903005"/>  </isotope>
