@@ -57,6 +57,8 @@ MATERIALS_INFO = '''
 #@            - Glass 
 #@            - Lead
 #@            - Q235 (Steel)
+#@            - AL5052-H32 (Aluminium alloy)
+#@            - Brass
 #@            - FibrousGlass
 #@            - PDMS: Polydimethylsiloxane (Silicon Rubber)
 #@            - EpoxyResin
@@ -97,6 +99,8 @@ MATERIALS_LIST = [
 	{"name" : "SAC305",       "group" : "Other"},
 	{"name" : "Lead",         "group" : "Other"},
 	{"name" : "Q235",         "group" : "Other"},
+	{"name" : "AL5052-H32",   "group" : "Other"},
+	{"name" : "Brass",        "group" : "Other"},
 ]
 
 MATERIALS = '''
@@ -415,6 +419,21 @@ MATERIALS = '''
            <fraction n="0.014" ref="manganese"/>
            <fraction n="0.004" ref="silicon"/>
            <fraction n="0.002" ref="carbon"/>
+     </material>
+
+     <material name="AL5052-H32" state="solid">  <!-- ALUMINUIM ALLOY -->
+           <D value="2.68" unit="g/cm3"/>
+           <fraction n="0.969" ref="aluminum"/>
+           <fraction n="0.025" ref="magnesium"/>
+           <fraction n="0.003" ref="iron"/>
+           <fraction n="0.002" ref="chromium"/>
+           <fraction n="0.001" ref="silicon"/>
+     </material>
+
+     <material name="Brass" state="solid"> <!-- brass: http://www.aatongdiao.com/en/new/new-73-571.html -->
+           <D value="8.73" unit="g/cm3"/>
+           <fraction n="0.61" ref="copper"/>
+           <fraction n="0.39" ref="zink"/>
      </material>
 
      <material name="Platinum" state="solid">
