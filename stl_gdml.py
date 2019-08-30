@@ -146,6 +146,20 @@ MATERIALS = '''
             <fraction n="0.801" ref="B11"/>
         </element>
 
+        <isotope name="Zn64"  N="34" Z="30">   <atom unit="g/mole" value="63.9291422"/>  </isotope>
+        <isotope name="Zn66"  N="36" Z="30">   <atom unit="g/mole" value="65.9260334"/>  </isotope>
+        <isotope name="Zn67"  N="37" Z="30">   <atom unit="g/mole" value="66.9271273"/>  </isotope>
+        <isotope name="Zn68"  N="38" Z="30">   <atom unit="g/mole" value="67.9248442"/>  </isotope>
+        <isotope name="Zn70"  N="40" Z="30">   <atom unit="g/mole" value="69.9253193"/>  </isotope>
+        <element name="zink">
+            <!-- see: https://en.wikipedia.org/wiki/Isotopes_of_zinc -->
+            <fraction n="0.492" ref="Zn64"/>
+            <fraction n="0.277" ref="Zn66"/>
+            <fraction n="0.040" ref="Zn67"/>
+            <fraction n="0.185" ref="Zn68"/>
+            <fraction n="0.006" ref="Zn70"/>
+        </element>
+
         <isotope name="Ag107"  N="60" Z="47">   <atom value="106.905092"/>   </isotope>
         <isotope name="Ag109"  N="62" Z="47">   <atom value="108.904756"/>   </isotope>
         <element name="silver">
