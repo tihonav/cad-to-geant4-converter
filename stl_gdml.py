@@ -201,7 +201,7 @@ MATERIALS = '''
                 <fraction ref="Pb208" n="0.524"/>
                 <fraction ref="Pb207" n="0.221"/>
                 <fraction ref="Pb206" n="0.241"/>
-                <fraction ref="Pb204" n="0.014`"/>
+                <fraction ref="Pb204" n="0.014"/>
         </element>
 
 
