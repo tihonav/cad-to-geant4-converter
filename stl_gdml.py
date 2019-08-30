@@ -56,6 +56,7 @@ MATERIALS_INFO = '''
 #@       - Others: 
 #@            - Glass 
 #@            - Lead
+#@            - Q235 (Steel)
 #@            - FibrousGlass
 #@            - PDMS: Polydimethylsiloxane (Silicon Rubber)
 #@            - EpoxyResin
@@ -95,6 +96,7 @@ MATERIALS_LIST = [
 	{"name" : "AlNO",         "group" : "Other"},
 	{"name" : "SAC305",       "group" : "Other"},
 	{"name" : "Lead",         "group" : "Other"},
+	{"name" : "Q235",         "group" : "Other"},
 ]
 
 MATERIALS = '''
@@ -119,6 +121,7 @@ MATERIALS = '''
         <element name="calcium"    formula="Ca"  Z="20">   <atom value="40.078"/>   </element>
         <element name="titanium"   formula="Ti"  Z="22">   <atom value="47.867"/>   </element>
         <element name="chromium"   formula="Cr"  Z="24">   <atom value="51.9961"/>  </element>
+        <element name="manganese"  formula="Mn"  Z="25">   <atom value="54.9380"/>  </element>
         <element name="iron"       formula="Fe"  Z="26">   <atom value="55.8450"/>  </element>
         <element name="nickel"     formula="Ni"  Z="28">   <atom value="58.6934"/>  </element>
         <element name="copper"     formula="Cu"  Z="29">   <atom value="63.55"/>    </element>
@@ -389,6 +392,15 @@ MATERIALS = '''
            <!-- see https://en.wikipedia.org/wiki/Lead -->
            <D value="11.34" unit="g/cm3"/>
            <fraction n="1." ref="lead"/>
+     </material>
+
+     <material name="Q235" state="solid">  <!-- STEEL -->
+           <!-- density, see: https://www.chinesesteelgrades.com/q235-steel/ -->
+           <D value="7.85" unit="g/cm3"/>
+           <fraction n="0.980" ref="iron"/>
+           <fraction n="0.014" ref="manganese"/>
+           <fraction n="0.004" ref="silicon"/>
+           <fraction n="0.002" ref="carbon"/>
      </material>
 
      <material name="Platinum" state="solid">
