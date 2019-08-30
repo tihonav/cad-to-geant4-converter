@@ -55,6 +55,7 @@ MATERIALS_INFO = '''
 #@            - BC254 (neutron detector)
 #@       - Others: 
 #@            - Glass 
+#@            - Lead
 #@            - FibrousGlass
 #@            - PDMS: Polydimethylsiloxane (Silicon Rubber)
 #@            - EpoxyResin
@@ -93,6 +94,7 @@ MATERIALS_LIST = [
 	{"name" : "EpoxyResin",   "group" : "Other"},
 	{"name" : "AlNO",         "group" : "Other"},
 	{"name" : "SAC305",       "group" : "Other"},
+	{"name" : "Lead",         "group" : "Other"},
 ]
 
 MATERIALS = '''
@@ -188,6 +190,18 @@ MATERIALS = '''
                 <fraction ref="Te126Te" n="0.1884"/>
                 <fraction ref="Te128Te" n="0.3174"/>
                 <fraction ref="Te130Te" n="0.3408"/>
+        </element>
+
+        <isotope name="Pb208" N="126" Z="82"> <atom unit="g/mole" value="207.9766521"/>  </isotope>
+        <isotope name="Pb207" N="125" Z="82"> <atom unit="g/mole" value="206.9758969"/>  </isotope>
+        <isotope name="Pb206" N="124" Z="82"> <atom unit="g/mole" value="205.9744653"/>  </isotope>
+        <isotope name="Pb204" N="122" Z="82"> <atom unit="g/mole" value="203.9730430"/>  </isotope>
+        <element name="lead">
+                <!-- see https://en.wikipedia.org/wiki/Isotopes_of_lead -->
+                <fraction ref="Pb208" n="0.524"/>
+                <fraction ref="Pb207" n="0.221"/>
+                <fraction ref="Pb206" n="0.241"/>
+                <fraction ref="Pb204" n="0.014`"/>
         </element>
 
 
@@ -361,6 +375,12 @@ MATERIALS = '''
            <!-- see http://www.rsc.org/periodic-table/element/52/tellurium -->
            <D value="6.232" unit="g/cm3"/>
            <fraction n="1." ref="tellurium"/>
+     </material>
+
+     <material name="Lead" state="solid">
+           <!-- see https://en.wikipedia.org/wiki/Lead -->
+           <D value="11.34" unit="g/cm3"/>
+           <fraction n="1." ref="lead"/>
      </material>
 
      <material name="Platinum" state="solid">
