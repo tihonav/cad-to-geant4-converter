@@ -53,6 +53,7 @@ MATERIALS_INFO = '''
 #@            - PMT
 #@            - BGO
 #@            - BC254 (neutron detector)
+#@            - CdWO4 (cadmium tungstanate)
 #@       - Others: 
 #@            - Glass 
 #@            - Lead
@@ -91,6 +92,7 @@ MATERIALS_LIST = [
 	{"name" : "PMT",          "group" : "Detector Elements"},
 	{"name" : "BGO",          "group" : "Detector Elements"},
 	{"name" : "BC254",        "group" : "Detector Elements"},
+	{"name" : "CdWO4",        "group" : "Detector Elements"},
 	{"name" : "Glass",        "group" : "Other"},
 	{"name" : "FibrousGlass", "group" : "Other"},
 	{"name" : "PDMS",         "group" : "Other"},
@@ -560,6 +562,16 @@ MATERIALS = '''
         <fraction n="0.2492" ref="carbon"/>
         <fraction n="0.7475" ref="hydrogen"/>
         <fraction n="0.0033" ref="B"/>
+     </material>
+
+     <!-- CdWO4 -->  
+     <!-- see https://www.tandfonline.com/doi/pdf/10.1080/00223131.2008.10875862 -->
+     <!-- see https://www.convertunits.com/molarmass/CdWO4 -->
+     <material name="CdWO4" state="solid">
+        <D unit="g/cm3" value="7.9"/>
+        <fraction n="0.510" ref="tungsten"/>
+        <fraction n="0.312" ref="cadmium"/>
+        <fraction n="0.178" ref="oxygen"/>
      </material>
 
     </materials>
